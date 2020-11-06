@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--載入Bootstrap－CSS套件(bootstrap)：放在<head>內-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!--載入 Font awesome 套件(Kits)：放在<head>內-->
+  <script src="https://kit.fontawesome.com/b677c2f0a5.js" crossorigin="anonymous"></script>
+
+  <title>Movie List</title>
+
+</head>
+
+<body>
+  <!--NavBar-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Movie List</a>
+    <!--button：漢堡按鈕-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <!--NavBar按鈕：Home-->
+        <li class="nav-item active">
+          <a class="nav-link" href="#"> Home <span class="sr-only">(current)</span></a>
+        </li>
+        <!--NavBar按鈕：Favorite-->
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Favirote </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!--CSS格式：mt-5 = margin top-->
+  <div class="container mt-5">
+
+    <!--DataPanel-->
+    <div class="row" id="data-panel">
+      <!--Render Movie List-->
+
+      <!--<div>大小為 col-sm-3-->
+      <div class="col-sm-3">
+        <!--mb-2：margin bottom-->
+        <div class="mb-2">
+          <div class="card">
+            <!--alt：改為Movie Poster-->
+            <img
+              src="https://raw.githubusercontent.com/ALPHACamp/movie-list-api/master/public/posters/80PWnSTkygi3QWWmJ3hrAwqvLnO.jpg"
+              class="card-img-top" alt="Movie Poster">
+
+            <div class="card-body">
+              <h5 class="card-title">Movie Title</h5>
+            </div>
+
+            <!--Footer-->
+            <div class="card-footer">
+              <!--設定class name，而非id，因為之後會有很多button，但id只能有1個-->
+              <!--data-toggle="modal"：點擊跳出modal；data-target：指跳出來的modal-->
+              <button class="btn btn-primary btn-show-movie" data-toggle="modal"
+                data-target="#movie-modal">More</button>
+              <button class="btn btn-info btn-add-favorite">＋</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!--Movie Modal：連結[data-target]-->
+  <!--<div> id 改為"movie-modal"，連結上方Footer-Button[data-target="#movie-modal"] -->
+  <div class="modal fade" id="movie-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!--新增modal-lg-->
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<h5> id 改成"movie-modal-title"-->
+          <h5 class="modal-title" id="movie-modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <!--<div> id 改成"movie-modal-body"-->
+        <div class="modal-body" id="movie-modal-body">
+          <div class="row">
+
+            <div class="col-sm-8" id="movie-modal-image">
+              <img src="https://movie-list.alphacamp.io/posters/c9XxwwhPHdaImA2f1WEfEsbhaFB.jpg" alt="movie-poster"
+                class="img-fluid">
+            </div>
+
+            <div class="col-sm-4">
+              <!--<em>強調文字功能，通常用斜體-->
+              <p><em id="movie-modal-date">release date: 2020/01/04</em></p>
+              <p id="movie-modal-description">It's fire.</p>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--載入Bootstrap－JS套件(jquery、popper.js、bootstrap)：放在<body>內，最下面-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+
+  <!--載入 axios 套件(Ajax)：放在<body>內，最下面-->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!--載入JavaScript檔案：注意!!! 順序必須在 axios CDN 後面-->
+  <!--也可改寫為" ./js檔案名稱"-->
+  <script src="2-2專案_Favorite.js"></script>
+
+</body>
+
+</html>
